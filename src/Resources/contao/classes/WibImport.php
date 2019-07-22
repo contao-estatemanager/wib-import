@@ -27,9 +27,14 @@ class WibImport
      */
     public function manuallyDownloadOpenImmoFile($context)
     {
-        if (\Input::get('downloadWibXml'))
+        if ($context->interface->type === 'wib')
         {
-            $this->downloadOpenImmoFile($context);
+            if (\Input::get('downloadWibXml'))
+            {
+                $this->downloadOpenImmoFile($context);
+            }
+
+            $context->updateSyncTime = false;
         }
     }
 
