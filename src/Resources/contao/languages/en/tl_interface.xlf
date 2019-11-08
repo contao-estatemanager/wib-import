@@ -1,14 +1,12 @@
 <?xml version="1.0" ?>
 <xliff version="1.1">
-  <file datatype="php" original="src/Resources/contao/languages/en/tl_interface.php" source-language="en" target-language="de">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_interface.php" source-language="en">
     <body>
       <trans-unit id="tl_interface.wibSyncUrl.0">
         <source>WIB Sync URL</source>
-        <target>WIB Sync-URL</target>
       </trans-unit>
       <trans-unit id="tl_interface.wibSyncUrl.1">
         <source>URL of the WIB interface for the real estate import.</source>
-        <target>URL zur WIB Live-Schnittstelle für den Immobilien-Import.</target>
       </trans-unit>
     </body>
   </file>
