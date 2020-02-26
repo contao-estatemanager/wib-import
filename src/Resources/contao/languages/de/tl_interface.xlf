@@ -10,6 +10,10 @@
         <source>URL of the WIB interface for the real estate import.</source>
         <target>URL zur WIB Live-Schnittstelle für den Immobilien-Import.</target>
       </trans-unit>
+      <trans-unit id="tl_interface.wib">
+        <source>WIB</source>
+        <target>WIB</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
