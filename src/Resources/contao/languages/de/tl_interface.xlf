@@ -3,7 +3,7 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_interface.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_interface.wibSyncUrl.0">
-        <source>WIB Sync url</source>
+        <source>WIB Sync URL</source>
         <target>WIB Sync-URL</target>
       </trans-unit>
       <trans-unit id="tl_interface.wibSyncUrl.1">
