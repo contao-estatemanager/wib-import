@@ -11,6 +11,9 @@
 namespace ContaoEstateManager\WibImport;
 
 
+use Contao\File;
+use Contao\FilesModel;
+use Contao\Input;
 use ContaoEstateManager\FilesHelper;
 
 /**
@@ -29,7 +32,7 @@ class WibImport
     {
         if ($context->interface->type === 'wib')
         {
-            if (\Input::get('downloadWibXml'))
+            if (Input::get('downloadWibXml'))
             {
                 $this->downloadOpenImmoFile($context);
             }
@@ -55,7 +58,7 @@ class WibImport
 
         if (strpos($content, 'uebertragung') !== false)
         {
-            \File::putContent($context->importFolder->path . '/' . $fileName, $content);
+            File::putContent($context->importFolder->path . '/' . $fileName, $content);
 
             $objInterface->lastSync = $syncTime;
             $objInterface->save();
@@ -147,7 +150,7 @@ class WibImport
 
             $completeFileName = $fileName . $extension;
 
-            $existingFile = \FilesModel::findByPath($objFilesFolder->path . '/' . $context->uniqueProviderValue . '/' . $context->uniqueValue . '/' . $completeFileName);
+            $existingFile = FilesModel::findByPath($objFilesFolder->path . '/' . $context->uniqueProviderValue . '/' . $context->uniqueValue . '/' . $completeFileName);
 
             if ($existingFile !== null && $existingFile->hash === $check)
             {
@@ -222,7 +225,7 @@ class WibImport
     {
         $content = $this->getFileContent($path);
 
-        \File::putContent($targetDirectory->path . '/' . ($tmpFolder ? 'tmp/' : '') . $fileName, $content);
+        File::putContent($targetDirectory->path . '/' . ($tmpFolder ? 'tmp/' : '') . $fileName, $content);
     }
 
     protected function getFileContent($path)
