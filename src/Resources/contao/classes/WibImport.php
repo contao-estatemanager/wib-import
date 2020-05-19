@@ -28,7 +28,7 @@ class WibImport
      *
      * @param $context
      */
-    public function manuallyDownloadOpenImmoFile($context)
+    public function manuallyDownloadOpenImmoFile($context): void
     {
         if ($context->interface->type === 'wib')
         {
@@ -46,7 +46,7 @@ class WibImport
      *
      * @param $context
      */
-    public function downloadOpenImmoFile($context)
+    public function downloadOpenImmoFile($context): void
     {
         $objInterface = $context->interface;
 
@@ -80,7 +80,7 @@ class WibImport
      * @param $skip
      * @param $context
      */
-    public function skipPartnerRecord($realEstate, &$re, &$contactPerson, &$skip, $context)
+    public function skipPartnerRecord($realEstate, &$re, &$contactPerson, &$skip, $context): void
     {
         if ($context->interface->type === 'wib')
         {
@@ -104,7 +104,7 @@ class WibImport
      *
      * @return string
      */
-    protected function getWibAuftragsart($realEstate, $context)
+    protected function getWibAuftragsart($realEstate, $context): string
     {
         $groups = $realEstate->xpath('verwaltung_objekt');
 
@@ -130,7 +130,7 @@ class WibImport
         return '';
     }
 
-    public function downloadImage($objFilesFolder, &$value, $tmpGroup, &$values, &$skip, $context)
+    public function downloadImage($objFilesFolder, &$value, $tmpGroup, &$values, &$skip, $context): void
     {
         if ($context->interface->type === 'wib')
         {
@@ -221,7 +221,7 @@ class WibImport
         return $extension;
     }
 
-    protected function downloadFile($path, $targetDirectory, $fileName, $tmpFolder=true)
+    protected function downloadFile($path, $targetDirectory, $fileName, $tmpFolder=true): void
     {
         $content = $this->getFileContent($path);
 
