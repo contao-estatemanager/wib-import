@@ -11,6 +11,9 @@
 namespace ContaoEstateManager\WibImport;
 
 
+use Contao\File;
+use Contao\FilesModel;
+use Contao\Input;
 use ContaoEstateManager\FilesHelper;
 
 /**
@@ -25,11 +28,11 @@ class WibImport
      *
      * @param $context
      */
-    public function manuallyDownloadOpenImmoFile($context)
+    public function manuallyDownloadOpenImmoFile($context): void
     {
         if ($context->interface->type === 'wib')
         {
-            if (\Input::get('downloadWibXml'))
+            if (Input::get('downloadWibXml'))
             {
                 $this->downloadOpenImmoFile($context);
             }
@@ -43,7 +46,7 @@ class WibImport
      *
      * @param $context
      */
-    public function downloadOpenImmoFile($context)
+    public function downloadOpenImmoFile($context): void
     {
         $objInterface = $context->interface;
 
@@ -55,7 +58,7 @@ class WibImport
 
         if (strpos($content, 'uebertragung') !== false)
         {
-            \File::putContent($context->importFolder->path . '/' . $fileName, $content);
+            File::putContent($context->importFolder->path . '/' . $fileName, $content);
 
             $objInterface->lastSync = $syncTime;
             $objInterface->save();
@@ -77,7 +80,7 @@ class WibImport
      * @param $skip
      * @param $context
      */
-    public function skipPartnerRecord($realEstate, &$re, &$contactPerson, &$skip, $context)
+    public function skipPartnerRecord($realEstate, &$re, &$contactPerson, &$skip, $context): void
     {
         if ($context->interface->type === 'wib')
         {
@@ -101,7 +104,7 @@ class WibImport
      *
      * @return string
      */
-    protected function getWibAuftragsart($realEstate, $context)
+    protected function getWibAuftragsart($realEstate, $context): string
     {
         $groups = $realEstate->xpath('verwaltung_objekt');
 
@@ -127,7 +130,7 @@ class WibImport
         return '';
     }
 
-    public function downloadImage($objFilesFolder, &$value, $tmpGroup, &$values, &$skip, $context)
+    public function downloadImage($objFilesFolder, &$value, $tmpGroup, &$values, &$skip, $context): void
     {
         if ($context->interface->type === 'wib')
         {
@@ -147,7 +150,7 @@ class WibImport
 
             $completeFileName = $fileName . $extension;
 
-            $existingFile = \FilesModel::findByPath($objFilesFolder->path . '/' . $context->uniqueProviderValue . '/' . $context->uniqueValue . '/' . $completeFileName);
+            $existingFile = FilesModel::findByPath($objFilesFolder->path . '/' . $context->uniqueProviderValue . '/' . $context->uniqueValue . '/' . $completeFileName);
 
             if ($existingFile !== null && $existingFile->hash === $check)
             {
@@ -218,11 +221,11 @@ class WibImport
         return $extension;
     }
 
-    protected function downloadFile($path, $targetDirectory, $fileName, $tmpFolder=true)
+    protected function downloadFile($path, $targetDirectory, $fileName, $tmpFolder=true): void
     {
         $content = $this->getFileContent($path);
 
-        \File::putContent($targetDirectory->path . '/' . ($tmpFolder ? 'tmp/' : '') . $fileName, $content);
+        File::putContent($targetDirectory->path . '/' . ($tmpFolder ? 'tmp/' : '') . $fileName, $content);
     }
 
     protected function getFileContent($path)
