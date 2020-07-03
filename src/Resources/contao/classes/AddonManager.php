@@ -17,10 +17,16 @@ use ContaoEstateManager\EstateManager;
 class AddonManager
 {
     /**
-     * Addon name
+     * Bundle name
      * @var string
      */
-    public static $name = 'WibImport';
+    public static $bundle = 'EstateManagerWibImport';
+
+    /**
+     * Package
+     * @var string
+     */
+    public static $package = 'contao-estatemanager/wib-import';
 
     /**
      * Addon config key
