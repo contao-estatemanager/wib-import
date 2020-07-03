@@ -11,9 +11,11 @@
 namespace ContaoEstateManager\WibImport;
 
 
+use Contao\Database;
 use Contao\File;
 use Contao\FilesModel;
 use Contao\Input;
+use Contao\System;
 use ContaoEstateManager\FilesHelper;
 
 /**
@@ -21,8 +23,18 @@ use ContaoEstateManager\FilesHelper;
  * @package ContaoEstateManager\Project
  * @author  Fabian Ekert <fabian@oveleon.de>
  */
-class WibImport
+class WibImport extends System
 {
+    /**
+     * Import the Config instance
+     */
+    protected function __construct()
+    {
+        $this->import(Database::class, 'Database');
+
+        parent::__construct();
+    }
+
     /**
      * Download an WIB open immo file manually
      *
@@ -91,6 +103,11 @@ class WibImport
                 if (in_array($re['AUFTRAGSART'], array('R', 'V', 'S', 'SB', 'Z', 'G')))
                 {
                     $skip = true;
+
+                    $objektnrExtern = $this->getObjektnrExtern($realEstate, $context);
+
+                    $this->Database->prepare("DELETE FROM tl_real_estate WHERE objektnrExtern=?")
+                        ->execute($objektnrExtern);
                 }
             }
         }
@@ -128,6 +145,21 @@ class WibImport
         }
 
         return '';
+    }
+
+    /**
+     * Return field "objecktr_extern" from real estate xpath object
+     *
+     * @param $realEstate
+     * @param $context
+     *
+     * @return string
+     */
+    protected function getObjektnrExtern($realEstate, $context): string
+    {
+        $groups = $realEstate->xpath('verwaltung_techn');
+
+        return $context->getFieldData('objektnr_extern', $groups[0]);
     }
 
     public function downloadImage($objFilesFolder, &$value, $tmpGroup, &$values, &$skip, $context): void
