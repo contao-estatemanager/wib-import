@@ -24,5 +24,5 @@ if(ContaoEstateManager\WibImport\AddonManager::valid()) {
     );
 
     // Add palettes
-    $GLOBALS['TL_DCA']['tl_interface']['palettes']['wib'] = '{title_legend},title,type;{oi_field_legend},provider,anbieternr,uniqueField,importPath,filesPath,filesPathContactPerson;{related_records_legend},contactPersonActions,contactPersonUniqueField,importThirdPartyRecords;{expert_legend},skipRecords,dontPublishRecords;{sync_legend},autoSync,deleteFilesOlderThen,wibSyncUrl';
+    $GLOBALS['TL_DCA']['tl_interface']['palettes']['wib'] = '{title_legend},title,type;{oi_field_legend},provider,anbieternr,uniqueField,importPath,filesPath,filesPathContactPerson;{related_records_legend},contactPersonActions,contactPersonUniqueField,importThirdPartyRecords;{expert_legend},skipRecords,dontPublishRecords;{sync_legend},autoSync,deleteFilesOlderThen,wibSyncUrl,filesPerSync';
 }
