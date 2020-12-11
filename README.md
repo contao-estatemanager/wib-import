@@ -4,4 +4,4 @@ The WIB import extension provides a new interface for importing real estate of t
 # License
 Copyright © 2020 Contao EstateManager
 
-⚖ [License agreement](https://www.contao-estatemanager.com/de/lizenzbedingungen.html)
+⚖ [License agreement](https://www.contao-estatemanager.com/de/lizenzbedingungen.html) (German)
