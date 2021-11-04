@@ -215,6 +215,14 @@ class WibImport extends System
                 return $query[$parameter];
             }
         }
+        if (isset($parts['path']))
+        {
+            $arrPathFragments = explode('/', $parts['path']);
+            if (count($arrPathFragments))
+            {
+                return end($arrPathFragments);
+            }
+        }
 
         return null;
     }
