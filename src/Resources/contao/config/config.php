@@ -11,10 +11,13 @@
 // ESTATEMANAGER
 $GLOBALS['TL_ESTATEMANAGER_ADDONS'][] = array('ContaoEstateManager\WibImport', 'AddonManager');
 
-if(ContaoEstateManager\WibImport\AddonManager::valid()) {
+use ContaoEstateManager\WibImport\AddonManager;
+use ContaoEstateManager\WibImport\WibImport;
+
+if(AddonManager::valid()) {
     // HOOKS
-    $GLOBALS['TL_HOOKS']['realEstateImportBeforeSync'][]       = array('ContaoEstateManager\WibImport\WibImport', 'manuallyDownloadOpenImmoFile');
-    $GLOBALS['TL_HOOKS']['realEstateImportBeforeCronSync'][]   = array('ContaoEstateManager\WibImport\WibImport', 'downloadOpenImmoFile');
-    $GLOBALS['TL_HOOKS']['realEstateImportPrePrepareRecord'][] = array('ContaoEstateManager\WibImport\WibImport', 'skipPartnerRecord');
-    $GLOBALS['TL_HOOKS']['realEstateImportSaveImage'][]        = array('ContaoEstateManager\WibImport\WibImport', 'downloadImage');
+    $GLOBALS['CEM_HOOKS']['realEstateImportBeforeSync'][]       = array(WibImport::class, 'manuallyDownloadOpenImmoFile');
+    $GLOBALS['CEM_HOOKS']['realEstateImportBeforeCronSync'][]   = array(WibImport::class, 'downloadOpenImmoFile');
+    $GLOBALS['CEM_HOOKS']['realEstateImportPrePrepareRecord'][] = array(WibImport::class, 'skipPartnerRecord');
+    $GLOBALS['CEM_HOOKS']['realEstateImportSaveImage'][]        = array(WibImport::class, 'downloadImage');
 }
