@@ -16,8 +16,8 @@ use ContaoEstateManager\WibImport\WibImport;
 
 if(AddonManager::valid()) {
     // HOOKS
-    $GLOBALS['CEM_HOOKS']['realEstateImportBeforeSync'][]       = array(WibImport::class, 'manuallyDownloadOpenImmoFile');
-    $GLOBALS['CEM_HOOKS']['realEstateImportBeforeCronSync'][]   = array(WibImport::class, 'downloadOpenImmoFile');
-    $GLOBALS['CEM_HOOKS']['realEstateImportPrePrepareRecord'][] = array(WibImport::class, 'skipPartnerRecord');
-    $GLOBALS['CEM_HOOKS']['realEstateImportSaveImage'][]        = array(WibImport::class, 'downloadImage');
+    $GLOBALS['TL_HOOKS']['realEstateImportBeforeSync'][]       = array(WibImport::class, 'manuallyDownloadOpenImmoFile');
+    $GLOBALS['TL_HOOKS']['realEstateImportBeforeCronSync'][]   = array(WibImport::class, 'downloadOpenImmoFile');
+    $GLOBALS['TL_HOOKS']['realEstateImportPrePrepareRecord'][] = array(WibImport::class, 'skipPartnerRecord');
+    $GLOBALS['TL_HOOKS']['realEstateImportSaveImage'][]        = array(WibImport::class, 'downloadImage');
 }
