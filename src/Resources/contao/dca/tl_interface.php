@@ -19,7 +19,7 @@ if(ContaoEstateManager\WibImport\AddonManager::valid()) {
         'label'                   => &$GLOBALS['TL_LANG']['tl_interface']['wibSyncUrl'],
         'exclude'                 => true,
         'inputType'               => 'text',
-        'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'long'),
+        'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'long clr'),
         'sql'                     => "varchar(255) NOT NULL default ''"
     );
 
