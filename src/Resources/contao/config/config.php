@@ -20,4 +20,5 @@ if(AddonManager::valid()) {
     $GLOBALS['TL_HOOKS']['realEstateImportBeforeCronSync'][]   = array(WibImport::class, 'downloadOpenImmoFile');
     $GLOBALS['TL_HOOKS']['realEstateImportPrePrepareRecord'][] = array(WibImport::class, 'skipPartnerRecord');
     $GLOBALS['TL_HOOKS']['realEstateImportSaveImage'][]        = array(WibImport::class, 'downloadImage');
+    $GLOBALS['TL_HOOKS']['beforeRealEstateImport'][]           = array(WibImport::class, 'formatEmptyMainPrice');
 }
