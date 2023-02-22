@@ -204,6 +204,18 @@ class WibImport extends System
         }
     }
 
+    /**
+     * Formats a non-given main price to the correct value as
+     * WIB does not comply with OpenImmo standard
+     */
+    public function formatEmptyMainPrice(&$objRealEstate, $context): void
+    {
+        if (false === $objRealEstate->kaufpreis)
+        {
+            $objRealEstate->kaufpreis = null;
+        }
+    }
+
     protected function getValueFromStringUrl($url, $parameter)
     {
         $parts = parse_url($url);
